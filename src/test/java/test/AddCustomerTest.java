@@ -5,13 +5,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import page.AddCustomerPage;
+import page.CustomersListPage;
 import page.DashboardPage;
 import page.LoginPage;
 import util.BrowserFactory;
 import util.ExcelReader;
 
 public class AddCustomerTest {
-	
+
 	WebDriver driver;
 	ExcelReader exlread = new ExcelReader("src\\main\\java\\data\\TF_TestData.xlsx");
 	String userName = exlread.getCellData("LoginInfo", "UserName", 2);
@@ -25,23 +26,24 @@ public class AddCustomerTest {
 	String country = exlread.getCellData("AddContactInfo", "Country", 2);
 	String state = exlread.getCellData("AddContactInfo", "State", 2);
 	String zip = exlread.getCellData("AddContactInfo", "Zip", 2);
-	
+	String userNameToVerify;
+
 	@Test
 	public void validUserShouldBeAbleToCreateCustomer() {
-		
+
 		driver = BrowserFactory.init();
-		
+
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		loginPage.enterUserName(userName);
 		loginPage.enterPassword(password);
 		loginPage.clickSigninButton();
-		
+
 		DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
 		dashboardPage.verifyDashboardPage();
 		dashboardPage.clickCustomersButton();
 		dashboardPage.clickAddCustomersButton();
-		
-		AddCustomerPage addCustomerPage = PageFactory.initElements(driver, AddCustomerPage.class); 	
+
+		AddCustomerPage addCustomerPage = PageFactory.initElements(driver, AddCustomerPage.class);
 		addCustomerPage.enterFullName(fullName);
 		addCustomerPage.enterCompany(companyName);
 		addCustomerPage.enterEmail(email);
@@ -52,11 +54,17 @@ public class AddCustomerTest {
 		addCustomerPage.enterZip(zip);
 		addCustomerPage.enterCountry(country);
 		addCustomerPage.ClickSaveButtonOnAddContact();
-		
-		addCustomerPage.verifySummaryPage();
-		dashboardPage.clickListCustomersButton();
-		
-		addCustomerPage.verifyEnteredNameAndDelete();
-	}
 
+		addCustomerPage.verifySummaryPage();
+		userNameToVerify = addCustomerPage.getUserName();
+
+		dashboardPage.clickListCustomersButton();
+
+		CustomersListPage customersPage = PageFactory.initElements(driver, CustomersListPage.class);
+
+		customersPage.verifyEnteredNameAndDelete(userNameToVerify);
+		customersPage.verifyCustomerHasBeenDeleted(userNameToVerify);
+		customersPage.searchDeletedCustomer(userNameToVerify);
+
+	}
 }

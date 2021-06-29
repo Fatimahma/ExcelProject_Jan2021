@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="28801" started-at="2021-05-23T18:29:58Z" finished-at="2021-05-23T18:30:27Z">
+  <suite started-at="2021-06-29T00:31:00Z" name="Default suite" finished-at="2021-06-29T00:31:22Z" duration-ms="22195">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="28801" started-at="2021-05-23T18:29:58Z" finished-at="2021-05-23T18:30:27Z">
+    <test started-at="2021-06-29T00:31:00Z" name="Default test" finished-at="2021-06-29T00:31:22Z" duration-ms="22195">
       <class name="test.AddCustomerTest">
-        <test-method status="PASS" signature="validUserShouldBeAbleToCreateCustomer()[pri:0, instance:test.AddCustomerTest@7193666c]" name="validUserShouldBeAbleToCreateCustomer" duration-ms="28743" started-at="2021-05-23T18:29:58Z" finished-at="2021-05-23T18:30:27Z">
+        <test-method signature="validUserShouldBeAbleToCreateCustomer()[pri:0, instance:test.AddCustomerTest@eb6449b]" started-at="2021-06-29T00:31:00Z" name="validUserShouldBeAbleToCreateCustomer" finished-at="2021-06-29T00:31:22Z" duration-ms="22174" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validUserShouldBeAbleToCreateCustomer -->
